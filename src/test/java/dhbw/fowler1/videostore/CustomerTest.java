@@ -96,6 +96,22 @@ public class CustomerTest {
         assertEquals(expected, customer.statement());
     }
 
+    @Test
+    public void rentOneOfEachTypeForFourDaysHTML() throws Exception {
+        int daysRented = 4;
+        customer.addRental(getRental("Killer Klowns from Outer Space", Movie.REGULAR, daysRented));
+        customer.addRental(getRental("Awesome New Release", Movie.NEW_RELEASE, daysRented));
+        customer.addRental(getRental("Cars", Movie.CHILDRENS, daysRented));
+
+        String expected = "<H1>Rentals for <EM>Arthur Dent</EM></H1><P>\n" +
+                "Killer Klowns from Outer Space: 5.0<BR>\n" +
+                "Awesome New Release: 12.0<BR>\n" +
+                "Cars: 3.0<BR>\n" +
+                "<P>You owe <EM>20.0</EM><P>\n"+
+                "On this rental you earned <EM>4</EM> frequent renter points<P>";
+        assertEquals(expected, customer.htmlStatement());
+    }
+
     private Rental getRental(String title, int priceCode, int daysRented) {
         Movie movie = new Movie(title, priceCode);
         return new Rental(movie, daysRented);
