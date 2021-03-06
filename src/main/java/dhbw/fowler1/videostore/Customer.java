@@ -14,13 +14,13 @@ public class Customer {
 
     public String statement() {
 
-        return TextStatement.value(this);
+        return new TextStatement().value(this);
 
     }
 
     public String htmlStatement() {
 
-        return HtmlStatement.value(this);
+        return new HtmlStatement().value(this);
 
     }
 

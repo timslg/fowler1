@@ -2,19 +2,31 @@ package dhbw.fowler1.videostore;
 
 public class TextStatement {
 
-    public static String value(Customer aCustomer) {
-        String result = "Rental Record for " + aCustomer.getName() + "\n";
+    public String value(Customer aCustomer) {
+        String result = headerString(aCustomer);
 
         for(Rental aRental : aCustomer.getRentals()) {
-
             //show figures for this rental
-            result += "\t" + aRental.getMovie().getTitle()+ "\t" +
-                    String.valueOf(aRental.getCharge()) + "\n";
+            result += eachRentalString(aRental);
         }
         //add footer lines
-        result += "Amount owed is " + String.valueOf(aCustomer.getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(aCustomer.getTotalFrequentRenterPoints()) +
-                " frequent renter points";
+        result += footerString(aCustomer);
         return result;
     }
+
+    public String headerString(Customer aCustomer) {
+        return "Rental Record for " + aCustomer.getName() + "\n";
+    }
+
+    public String eachRentalString(Rental aRental) {
+        return "\t" + aRental.getMovie().getTitle()+ "\t" +
+                String.valueOf(aRental.getCharge()) + "\n";
+    }
+
+    public String footerString(Customer aCustomer) {
+        return "Amount owed is " + String.valueOf(aCustomer.getTotalCharge()) + "\n" +
+                "You earned " + String.valueOf(aCustomer.getTotalFrequentRenterPoints()) +
+                " frequent renter points";
+    }
+
 }
