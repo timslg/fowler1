@@ -1,11 +1,12 @@
 package dhbw.fowler1.videostore;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Vector;
 
 public class Customer {
     private String _name;
-    private Vector _rentals = new Vector();
+    private ArrayList<Rental> _rentals = new ArrayList<>();
 
     public Customer(String name) {
         _name = name;
@@ -14,11 +15,10 @@ public class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration rentals = _rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
-        while (rentals.hasMoreElements()) {
+
+        for(Rental each : _rentals) {
             double thisAmount = 0;
-            Rental each = (Rental) rentals.nextElement();
 
             // determine amount for each line
             switch (each.getMovie().getPriceCode()) {
@@ -56,7 +56,7 @@ public class Customer {
     }
 
     public void addRental(Rental arg) {
-        _rentals.addElement(arg);
+        _rentals.add(arg);
     }
 
     public String getName() {
