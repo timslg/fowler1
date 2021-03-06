@@ -1,6 +1,6 @@
 package dhbw.fowler1.videostore;
 
-public class HtmlStatement {
+public class HtmlStatement extends Statement {
 
     public String value(Customer aCustomer) {
         String result = headerString(aCustomer);

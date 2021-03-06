@@ -1,18 +1,6 @@
 package dhbw.fowler1.videostore;
 
-public class TextStatement {
-
-    public String value(Customer aCustomer) {
-        String result = headerString(aCustomer);
-
-        for(Rental aRental : aCustomer.getRentals()) {
-            //show figures for this rental
-            result += eachRentalString(aRental);
-        }
-        //add footer lines
-        result += footerString(aCustomer);
-        return result;
-    }
+public class TextStatement extends Statement {
 
     public String headerString(Customer aCustomer) {
         return "Rental Record for " + aCustomer.getName() + "\n";
