@@ -13,45 +13,18 @@ public class Customer {
     }
 
     public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
 
-        for(Rental aRental : _rentals) {
+        return TextStatement.value(this);
 
-            //show figures for this rental
-            result += "\t" + aRental.getMovie().getTitle()+ "\t" +
-                    String.valueOf(aRental.getCharge()) + "\n";
-        }
-        //add footer lines
-        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) +
-                " frequent renter points";
-        return result;
     }
 
     public String htmlStatement() {
 
-        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-
-        for(Rental aRental : _rentals) {
-
-            //show figures for each rental
-            result += aRental.getMovie().getTitle() + ": " +
-                    String.valueOf(aRental.getCharge()) + "<BR>\n";
-
-        }
-
-        //add footer lines
-        result += "<P>You owe <EM>" + String.valueOf(getTotalCharge()) +
-                "</EM><P>\n";
-        result += "On this rental you earned <EM>" +
-                String.valueOf(getTotalFrequentRenterPoints()) +
-                "</EM> frequent renter points<P>";
-
-        return result;
+        return HtmlStatement.value(this);
 
     }
 
-    private double getTotalCharge() {
+    public double getTotalCharge() {
         double result = 0;
         for(Rental aRental : _rentals) {
             result += aRental.getCharge();
@@ -59,7 +32,7 @@ public class Customer {
         return result;
     }
 
-    private int getTotalFrequentRenterPoints() {
+    public int getTotalFrequentRenterPoints() {
         int result = 0;
         for(Rental aRental : _rentals) {
             result += aRental.getFrequentRenterPoints();
@@ -73,5 +46,9 @@ public class Customer {
 
     public String getName() {
         return _name;
+    }
+
+    public ArrayList<Rental> getRentals() {
+        return _rentals;
     }
 }
